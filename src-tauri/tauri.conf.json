@@ -14,23 +14,27 @@
       {
         "label": "main",
         "title": "Nommit",
-        "width": 800,
+        "url": "/app",
+        "width": 900,
         "height": 600,
         "minHeight": 600,
-        "minWidth": 800,
+        "minWidth": 900,
         "resizable": true,
         "visible": false,
-        "fullscreen": true
+        "decorations": false,
+        "fullscreen": false
       },
       {
         "label": "login",
         "title": "Login",
-        "url": "/init",
-        "width": 300,
-        "height": 400,
+        "url": "/",
         "resizable": false,
         "fullscreen": false,
         "decorations": false,
+        "maxHeight": 400,
+        "maxWidth": 300,
+        "minHeight": 400,
+        "minWidth": 300,
         "visible": true,
         "center": true
       }
