@@ -18,10 +18,10 @@
         "width": 900,
         "height": 600,
         "minHeight": 600,
-        "minWidth": 900,
+        "minWidth": 1100,
         "resizable": true,
         "visible": false,
-        "decorations": false,
+        "decorations": true,
         "fullscreen": false
       },
       {
