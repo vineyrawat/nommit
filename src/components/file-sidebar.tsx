@@ -3,22 +3,21 @@ import {
   ContextMenuContent,
   ContextMenuItem,
   ContextMenuTrigger,
-} from "@/components/ui/context-menu";
-import { hotkeysCoreFeature, syncDataLoaderFeature } from "@headless-tree/core";
-import { useTree } from "@headless-tree/react";
+} from '@/components/ui/context-menu';
+import { hotkeysCoreFeature, syncDataLoaderFeature } from '@headless-tree/core';
+import { useTree } from '@headless-tree/react';
 import {
-  Command,
   FileIcon,
   FilePlus,
   FolderIcon,
   FolderOpenIcon,
   FolderPlus,
   GripVertical,
-} from "lucide-react";
+} from 'lucide-react';
 
-import { Tree, TreeItem, TreeItemLabel } from "@/components/tree";
-import { useEffect, useRef, useState } from "react";
-import { cn } from "@/lib/utils";
+import { Tree, TreeItem, TreeItemLabel } from '@/components/tree';
+import { useEffect, useRef, useState } from 'react';
+import { cn } from '@/lib/utils';
 
 interface Item {
   name: string;
@@ -27,32 +26,32 @@ interface Item {
 
 const items: Record<string, Item> = {
   company: {
-    name: "Company",
-    children: ["engineering", "marketing", "operations"],
+    name: 'Company',
+    children: ['engineering', 'marketing', 'operations'],
   },
   engineering: {
-    name: "Engineering",
-    children: ["frontend", "backend", "platform-team"],
+    name: 'Engineering',
+    children: ['frontend', 'backend', 'platform-team'],
   },
-  frontend: { name: "Frontend", children: ["design-system", "web-platform"] },
-  "design-system": {
-    name: "Design System",
-    children: ["components", "tokens", "guidelines"],
+  frontend: { name: 'Frontend', children: ['design-system', 'web-platform'] },
+  'design-system': {
+    name: 'Design System',
+    children: ['components', 'tokens', 'guidelines'],
   },
-  components: { name: "Components", children: ["tokens", "infrastructure"] },
-  tokens: { name: "Tokens" },
-  guidelines: { name: "Guidelines" },
-  "web-platform": { name: "Web Platform" },
-  backend: { name: "Backend", children: ["apis", "infrastructure"] },
-  apis: { name: "APIs" },
-  infrastructure: { name: "Infrastructure" },
-  "platform-team": { name: "Platform Team" },
-  marketing: { name: "Marketing", children: ["content", "seo"] },
-  content: { name: "Content" },
-  seo: { name: "SEO" },
-  operations: { name: "Operations", children: ["hr", "finance"] },
-  hr: { name: "HR" },
-  finance: { name: "Finance" },
+  components: { name: 'Components', children: ['infrastructure'] },
+  tokens: { name: 'Tokens' },
+  guidelines: { name: 'Guidelines' },
+  'web-platform': { name: 'Web Platform' },
+  backend: { name: 'Backend' },
+  apis: { name: 'APIs' },
+  infrastructure: { name: 'Infrastructure' },
+  'platform-team': { name: 'Platform Team' },
+  marketing: { name: 'Marketing', children: ['content', 'seo'] },
+  content: { name: 'Content' },
+  seo: { name: 'SEO' },
+  operations: { name: 'Operations', children: ['hr', 'finance'] },
+  hr: { name: 'HR' },
+  finance: { name: 'Finance' },
 };
 
 const indent = 20;
@@ -60,14 +59,14 @@ const indent = 20;
 export default function FileSidebar() {
   const defaultWidth = 250;
   const minWidth = 180;
-  const maxWidth = 600;
+  const maxWidth = 1000;
 
   const tree = useTree<Item>({
     initialState: {
-      expandedItems: ["engineering", "frontend", "design-system"],
+      expandedItems: ['engineering', 'frontend', 'design-system'],
     },
     indent,
-    rootItemId: "company",
+    rootItemId: 'company',
     getItemName: (item) => item.getItemData().name,
     isItemFolder: (item) => (item.getItemData()?.children?.length ?? 0) > 0,
     dataLoader: {
@@ -99,7 +98,7 @@ export default function FileSidebar() {
       const deltaX = e.clientX - startXRef.current;
       const newWidth = Math.max(
         minWidth,
-        Math.min(maxWidth, startWidthRef.current + deltaX),
+        Math.min(maxWidth, startWidthRef.current + deltaX)
       );
 
       setSidebarWidth(newWidth);
@@ -110,13 +109,13 @@ export default function FileSidebar() {
     };
 
     if (isResizing) {
-      document.addEventListener("mousemove", handleMouseMove);
-      document.addEventListener("mouseup", handleMouseUp);
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
     }
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
     };
   }, [isResizing, minWidth, maxWidth]);
 
@@ -125,8 +124,8 @@ export default function FileSidebar() {
       ref={sidebarRef}
       style={{ width: `${sidebarWidth}px` }}
       className={cn(
-        "min-w-[14rem] border-r flex relative overflow-y-auto flex-col overflow-x-hidden p-1 h-screen",
-        isResizing && "select-none",
+        'min-w-[14rem] border-r flex relative overflow-y-auto flex-col overflow-x-hidden p-1 h-screen',
+        isResizing && 'select-none'
       )}
     >
       <Tree
@@ -160,15 +159,15 @@ export default function FileSidebar() {
 
       <div
         className={cn(
-          "absolute z-10 top-0 right-0 h-full w-1 cursor-ew-resize group",
-          isResizing && "bg-blue-500",
+          'absolute z-10 top-0 right-0 h-full w-1 cursor-ew-resize group',
+          isResizing && 'bg-blue-500'
         )}
         onMouseDown={handleMouseDown}
       >
         <div
           className={cn(
-            "absolute top-1/2 right-0 -translate-y-1/2 flex items-center justify-center h-8 w-4 bg-slate-200 dark:bg-slate-800 rounded-l opacity-0 group-hover:opacity-100",
-            isResizing && "opacity-100 bg-blue-500 dark:bg-blue-500",
+            'absolute top-1/2 right-0 -translate-y-1/2 flex items-center justify-center h-8 w-4 bg-slate-200 dark:bg-slate-800 rounded-l opacity-0 group-hover:opacity-100',
+            isResizing && 'opacity-100 bg-blue-500 dark:bg-blue-500'
           )}
         >
           <GripVertical className="h-4 w-4 text-slate-500 dark:text-slate-400" />
